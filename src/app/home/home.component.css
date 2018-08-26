@@ -1,0 +1,28 @@
+
+.container
+{
+	margin-top:30px;
+	width: 400px;
+	height: 680px;
+}
+
+.login
+{   
+    border-right: 190px;
+	background-color: teal;
+	width: 180px;
+	text-align: center;
+	
+}
+.register
+{
+	background-color: teal;
+	width: 190px;
+    text-align: center;
+
+	
+}
+
+
+
+

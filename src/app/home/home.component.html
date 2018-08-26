@@ -1,12 +1,15 @@
-
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">HOME</label>
-          <span class="helper-text" data-error="wrong" data-success="right">HOME</span>
-        </div>
-      </div>
-    </form>
+<div class="container white z-depth-5">
+  <nav >
+    <ul>
+       <li class="login"><a (click)="checkClickButton('login')">Login</a></li>
+       <li class="register"><a (click)="checkClickButton('register')">Register</a></li>
+    </ul>
+  </nav>
+  <div [hidden]="login" class="col s12">
+       <app-login></app-login>
   </div>
+  <div [hidden]="register" class="col s12">
+      <app-register></app-register>
+  </div>
+
+</div>
