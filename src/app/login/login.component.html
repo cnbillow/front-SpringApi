@@ -1,17 +1,28 @@
   <div class="col s12">
-    <form class="col s12">
+    <form class="col s12" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-container">
         <h3 class="title">Login</h3>
-        <div class="row">
+         <div class="row">
           <div class="input-field col s12">
-            <input type="email" class="validate">
+            <input  type="email" class="validate" formControlName="email" required email>
             <label for="email">Email</label>
+             <app-control-errors
+              [showError]="applyCssError('email')"
+               msgError="Email required"
+            >
+            </app-control-errors>
           </div>
-        </div> 
+        </div>
         <div class="row">
           <div class="input-field col s12">
-            <input  type="password" class="validate">
+            <input  type="{{inputType}}" class="validate" formControlName="password" required>
             <label for="password">Password</label>
+             <i class="material-icons prefix icons" (click)="hideOrShowPassWord()">{{inconType}}</i>
+              <app-control-errors
+              [showError]="applyCssError('password')"
+               msgError="Password required"
+              >
+            </app-control-errors>
           </div>
         </div>
           <button class="btn btnregister" type="submit" name="action">Sing up</button>

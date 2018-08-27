@@ -1,44 +1,64 @@
   <div class="col s12">
-    <form class="col s12">
-      <div class="form-container">
+    <form class="col s12" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
         <h3 class="title ">Register</h3>
         <div class="row">
           <div class="input-field col s6">
-            <input type="text" class="validate">
-            <label for="last_name">First Name</label>
+            <input type="text" class="validate"  formControlName="first_name" required>
+            <label for="first_name">First Name</label>
+            <app-control-errors
+              [showError]="applyCssError('first_name')"
+               msgError="First Name required"
+            >
+            </app-control-errors>
           </div>
+
           <div class="input-field col s6">
-            <input  type="text" class="validate">
-            <label for="last_name">Last Name</label>
+            <input  type="text" class="validate" formControlName="last_name" required>
+            <label >Last Name</label>
+              <app-control-errors
+              [showError]="applyCssError('last_name')"
+               msgError="Last Name required"
+            >
+            </app-control-errors>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="email" class="validate">
+            <input  type="email" class="validate" formControlName="email" required email>
             <label for="email">Email</label>
+             <app-control-errors
+               [showError]="applyCssError('email')"
+               msgError="Email required"
+            >
+            </app-control-errors>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input  type="email" class="validate">
-            <label for="email-confirm">Email Confirmation</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input  type="password" class="validate">
+            <input  type="{{inputType}}" class="validate" formControlName="password" required>
             <label for="password">Password</label>
+             <i class="material-icons prefix icons" (click)="hideOrShowPassWord()">{{inconType}}</i>
+              <app-control-errors
+              [showError]="applyCssError('password')"
+               msgError="Password required"
+              >
+            </app-control-errors>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input  type="password" class="validate">
+            <input  type="{{inputType}}" class="validate" formControlName="password_confirm" required>
             <label for="password-confirm">Password Confirmation</label>
+              <i class="material-icons prefix"  (click)="hideOrShowPassWord()">{{inconType}}</i>
+               <app-control-errors
+               [showError]="applyCssError('password_confirm')"
+               msgError="Password Confirmation required"
+              >
+            </app-control-errors>
           </div>
         </div>
-      <!--   <div class="row"> -->
           <button class="btn btnregister" type="submit" name="action">Sing up</button>
-    <!--     </div> -->
       </div>
     </form>
   </div>
