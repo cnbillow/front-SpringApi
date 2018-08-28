@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
      
   	this.registerForm = this.formBuilder.group({
-  		'first_name' : [ null, Validators.compose([Validators.required, Validators.minLength(2),Validators.maxLength(30)])],
-      'last_name' : [ null, Validators.compose([Validators.required, Validators.minLength(2),Validators.maxLength(30)])],
-      'email' : [ null, Validators.compose([Validators.required,Validators.email])],
-      'password' : [ null, Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(30)])],
-      'password_confirm' : [ null, Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(30)])],
+  		'first_name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(30)])],
+      'last_name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(30)])],
+      'email' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.email])],
+      'password' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30)])],
+      'password_confirm' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30)])],
 
     });
 

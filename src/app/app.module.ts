@@ -7,8 +7,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
- import { ControlErrorsComponent } from './shared/control-errors/control-errors.component';
+import { ControlErrorsComponent } from './shared/control-errors/control-errors.component';
 
+import {AuthenticationService} from './service/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/Http';
 
 @NgModule({
@@ -24,9 +26,10 @@ import { HttpModule } from '@angular/Http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/Http';
 
 import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
+import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,13 @@ export class LoginComponent implements OnInit {
    inputType : String;
 
     constructor(private formBuilder: FormBuilder,
-               private http: Http) { }
+                private authetication:AuthenticationService) { }
 
   ngOnInit() {
     
     this.loginForm = this.formBuilder.group({  		
-      'email' : [ null, Validators.compose([Validators.required,Validators.email])],
-      'password' : [ null, Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(30)])],
+      'email' : [ null, Validators.compose([Validators.required,Validators.email,Validators.pattern(".*\\S.*[a-zA-z0-9_-]")])],
+      'password' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(6),Validators.maxLength(30)])],
     });
 
       this.inconType = "visibility";
@@ -32,19 +33,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
 
-  	  if(this.loginForm.valid) {
-       this.http.post("http://54.86.39.109:8080/project-app-ws/users", JSON.stringify(this.loginForm.value))
-        .subscribe(dados => {
-          console.log(dados);
-           this.reserForm();
-         }, (Error: any) => alert(Error));
+  	  if(this.loginForm.valid) {     
+          this.authetication.connectLogin(this.loginForm.value);
+          this.reserForm();
+       }
 
-    }
 
-       Object.keys(this.loginForm.controls).forEach(campo => {
-       const input = this.loginForm.get(campo);
-        input.markAsTouched();
-      });
+
+        Object.keys(this.loginForm.controls).forEach(campo => {
+           const input = this.loginForm.get(campo);
+           input.markAsTouched();
+        });
 
   }
 
