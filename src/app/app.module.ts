@@ -10,8 +10,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ControlErrorsComponent } from './shared/control-errors/control-errors.component';
 
 import {AuthenticationService} from './service/authentication.service';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/Http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
