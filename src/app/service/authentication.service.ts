@@ -31,10 +31,9 @@ connectLogin(user:User){
    	this.user.userId = resp.headers.get('UserId');
    	this.user.login = true;
    	// console.log(this.user);
-    // return this.user;
+
    },(err) => {
     	this.user.login = false;
-   	    // return "asdasdasdsda";
         //console.log(err);
    });
 
