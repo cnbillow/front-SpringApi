@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
                 private authetication:AuthenticationService) { }
 
   ngOnInit() {
+
+     
+
     
     this.loginForm = this.formBuilder.group({  		
       'email' : [ null, Validators.compose([Validators.required,Validators.email,Validators.pattern(".*\\S.*[a-zA-z0-9_-]")])],
@@ -28,6 +31,10 @@ export class LoginComponent implements OnInit {
 
       this.inconType = "visibility";
       this.inputType = "password";
+
+        this.authetication.connectLogin(this.loginForm);
+
+
 
   }
 

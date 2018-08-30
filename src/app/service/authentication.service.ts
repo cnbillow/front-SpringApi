@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { RequestOptions, Http, Headers } from '@angular/Http';
-import { HttpClient } from '@angular/common/http';
-
-
 
 
 @Injectable({
@@ -11,21 +8,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthenticationService {
 
-constructor(private http: Http, private httpClient: HttpClient) { }
+constructor(private http: Http) { }
 
 connectLogin(data){
 
+
+
  
     let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      // headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Content-Type', 'application/json; charset=utf-8');
      let options = new RequestOptions({ headers: headers });
      return this.http.post('http://localhost:8080/projectdeveloper-app-aw/users/login',
      JSON.stringify({"email" : "hqDeveloper3@gmail.com","password" : "12345678"}),options)
      .subscribe(resp => {
      	  
-     	    console.log(resp);
-     	    console.log(resp.headers);
      	    console.log(resp.headers.get('Authorization'));
      	    console.log(resp.headers.get('UserId'));
   
@@ -67,12 +63,10 @@ connectLogin(data){
 
       	}
 
-      	),options).subscribe(
-            (data) => {
-      			console.log(data);
-    			 console.log(data.status);
-            }
-        );
+      	),options).subscribe(resp => {
+     	  
+     	    console.log(resp);
+     });
 
  }
 
