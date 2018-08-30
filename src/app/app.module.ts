@@ -12,6 +12,7 @@ import { ControlErrorsComponent } from './shared/control-errors/control-errors.c
 import {AuthenticationService} from './service/authentication.service';
 import { HttpModule } from '@angular/Http';
 import { HttpClientModule } from '@angular/common/http';
+import { User } from './entity/user';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ControlErrorsComponent
+    ControlErrorsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -27,9 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

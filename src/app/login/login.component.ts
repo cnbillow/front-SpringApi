@@ -3,6 +3,7 @@ import { Http } from '@angular/Http';
 
 import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
+import { User } from '../entity/user';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,10 @@ export class LoginComponent implements OnInit {
    inputType : String;
 
     constructor(private formBuilder: FormBuilder,
-                private authetication:AuthenticationService) { }
+                private authetication:AuthenticationService,
+                private user:User) { }
 
   ngOnInit() {
-
-     
-
     
     this.loginForm = this.formBuilder.group({  		
       'email' : [ null, Validators.compose([Validators.required,Validators.email,Validators.pattern(".*\\S.*[a-zA-z0-9_-]")])],
@@ -32,17 +31,26 @@ export class LoginComponent implements OnInit {
       this.inconType = "visibility";
       this.inputType = "password";
 
-        this.authetication.connectLogin(this.loginForm);
-
-
+ 
+      // this.user.email = "hqDeveloper3@gmail.com";
+      // this.user.password = "12345678";
+      // const u = this.authetication.connectLogin(this.user);
+      // console.log(u);
 
   }
 
   onSubmit(){
 
-  	  if(this.loginForm.valid) {     
-          this.authetication.connectLogin(this.loginForm.value);
-          this.reserForm();
+  	  if(this.loginForm.valid) {
+
+          this.user.email = "sshqDeveloper3@gmail.com";
+          this.user.password = "12345678";
+          const response = this.authetication.connectLogin(this.user);
+          // console.log(response);
+          console.log(this.user);
+
+          // this.reserForm();
+          // don't forget to use .trim();
        }
 
 
