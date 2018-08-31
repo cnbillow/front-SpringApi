@@ -3,6 +3,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 
 
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-modal-erros',
@@ -20,8 +21,9 @@ export class ModalErrosComponent implements OnInit {
 
   constructor()  {  }
 
-
   ngOnInit() {
+
+    
    
        $('.modal').modal();
        $('#modal1').modal('open');

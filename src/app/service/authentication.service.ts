@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 
-import {Observable,} from 'rxjs';
+import {Observable} from 'rxjs';
 import { catchError , map} from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { RequestOptions, Http, Headers } from '@angular/Http';
@@ -89,6 +89,10 @@ connectRegister(){
 		console.log(resp);
 	});
 
+	}
+
+	statusUser(){
+		return this.user.login;
 	}
 
 
