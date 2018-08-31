@@ -12,7 +12,7 @@ export class User {
   password : String;
   userId : String;
   token: String;
-  login: boolean;
+  login: boolean = false;
 
 
   // constructor( firstName? : String,lastName ?: String,email? : String, 

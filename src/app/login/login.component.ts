@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Http } from '@angular/Http';
 
 import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import { User } from '../entity/user';
+import { ModalErrosComponent } from '../shared/modal-erros/modal-erros.component';
+
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -16,6 +20,7 @@ export class LoginComponent implements OnInit {
    loginForm : FormGroup;
    inconType : String;
    inputType : String;
+   showModal : boolean;
 
     constructor(private formBuilder: FormBuilder,
                 private authetication:AuthenticationService,
@@ -27,32 +32,29 @@ export class LoginComponent implements OnInit {
       'email' : [ null, Validators.compose([Validators.required,Validators.email,Validators.pattern(".*\\S.*[a-zA-z0-9_-]")])],
       'password' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(6),Validators.maxLength(30)])],
     });
-
+      
+      this.showModal = false;
       this.inconType = "visibility";
       this.inputType = "password";
 
- 
-      // this.user.email = "hqDeveloper3@gmail.com";
-      // this.user.password = "12345678";
-      // const u = this.authetication.connectLogin(this.user);
-      // console.log(u);
-
+      this.authetication.showError.subscribe(
+            show => this.showModal = show
+        );
   }
 
   onSubmit(){
 
   	  if(this.loginForm.valid) {
 
-          this.user.email = "sshqDeveloper3@gmail.com";
-          this.user.password = "12345678";
-          const response = this.authetication.connectLogin(this.user);
-          // console.log(response);
-          console.log(this.user);
+          this.user.email = "hqDeveloper3@gmail.com";
+          this.user.password = "12345678sss";
+          this.authetication.connectLogin(this.user);
 
+          // console.log(this.user);
+     
           // this.reserForm();
           // don't forget to use .trim();
        }
-
 
 
         Object.keys(this.loginForm.controls).forEach(campo => {
@@ -79,12 +81,15 @@ export class LoginComponent implements OnInit {
      
   }
 
-
-
   applyCssError(input){
-
   	 return this.loginForm.get(input).touched && this.loginForm.get(input).errors;
- 
   }
+
+tetste(){
+  console.log("calll here");
+}
+ 
+
+
 
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 
 import {Observable,} from 'rxjs';
@@ -6,6 +6,11 @@ import { catchError , map} from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { RequestOptions, Http, Headers } from '@angular/Http';
 import { User } from '../entity/user';
+import { ModalErrosComponent } from '../shared/modal-erros/modal-erros.component';
+
+import { Router } from '@angular/router';
+
+
 
 
 @Injectable({
@@ -13,8 +18,12 @@ import { User } from '../entity/user';
 })
 export class AuthenticationService {
 
+
+	showError = new EventEmitter<boolean>();
+
 	constructor(private http: Http, 
 	        	private user:User,
+	        	private router:Router,
 		        private httpClient: HttpClient) { }
 
 
@@ -30,11 +39,12 @@ connectLogin(user:User){
    	this.user.token = resp.headers.get('Authorization');
    	this.user.userId = resp.headers.get('UserId');
    	this.user.login = true;
-   	// console.log(this.user);
+   	this.router.navigateByUrl('/dashboard');
+
 
    },(err) => {
-    	this.user.login = false;
-        //console.log(err);
+    	console.log(this.user);
+    	this.showError.emit(true);
    });
 
 

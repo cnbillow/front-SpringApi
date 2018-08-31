@@ -8,11 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ControlErrorsComponent } from './shared/control-errors/control-errors.component';
+import { ModalErrosComponent } from './shared/modal-erros/modal-erros.component';
 
 import {AuthenticationService} from './service/authentication.service';
 import { HttpModule } from '@angular/Http';
 import { HttpClientModule } from '@angular/common/http';
 import { User } from './entity/user';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { User } from './entity/user';
     LoginComponent,
     RegisterComponent,
     ControlErrorsComponent,
+    ModalErrosComponent,
+    DashboardComponent
     
   ],
   imports: [
