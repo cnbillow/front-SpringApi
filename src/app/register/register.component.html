@@ -4,20 +4,20 @@
         <h3 class="title ">Register</h3>
         <div class="row">
           <div class="input-field col s6">
-            <input type="text" class="validate"  formControlName="first_name" required>
+            <input type="text" class="validate"  formControlName="first_Name" required>
             <label for="first_name">First Name</label>
             <app-control-errors
-              [showError]="applyCssError('first_name')"
+              [showError]="applyCssError('first_Name')"
                msgError="First Name required"
             >
             </app-control-errors>
           </div>
 
           <div class="input-field col s6">
-            <input  type="text" class="validate" formControlName="last_name" required>
+            <input  type="text" class="validate" formControlName="last_Name" required>
             <label >Last Name</label>
               <app-control-errors
-              [showError]="applyCssError('last_name')"
+              [showError]="applyCssError('last_Name')"
                msgError="Last Name required"
             >
             </app-control-errors>

@@ -15,7 +15,7 @@ import * as $ from 'jquery';
 export class ModalErrosComponent implements OnInit {
 
   @Input() msgError: String;
-  modal : String;
+  // modal : String;
 
  closeResult: string;
 
@@ -23,11 +23,14 @@ export class ModalErrosComponent implements OnInit {
 
   ngOnInit() {
 
-    
-   
-       $('.modal').modal();
-       $('#modal1').modal('open');
-       $('.trigger-modal').modal();
+      // (<any>$('.modal')).modal();
+      // (<any>$('#modal1')).modal('open');
+      // (<any>$('.trigger-modal')).modal();
+
+      
+       // $('.modal').modal();
+       // $('#modal1').modal('open');
+       // $('.trigger-modal').modal();
     
   }
 

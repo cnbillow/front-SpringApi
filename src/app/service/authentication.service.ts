@@ -4,7 +4,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import {Observable} from 'rxjs';
 import { catchError , map} from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { RequestOptions, Http, Headers } from '@angular/Http';
+import { RequestOptions, Http, Headers, Response} from '@angular/Http';
 import { User } from '../entity/user';
 import { ModalErrosComponent } from '../shared/modal-erros/modal-erros.component';
 
@@ -41,53 +41,34 @@ connectLogin(user:User){
    	this.user.login = true;
    	this.router.navigateByUrl('/dashboard');
 
-
    },(err) => {
-    	console.log(this.user);
+    	
     	this.showError.emit(true);
    });
 
-
 }
 
-connectRegister(){
+connectRegister(user:User){
 
 	let headers = new Headers();
 	headers.append('Content-Type', 'application/json');
 	let options = new RequestOptions({ headers: headers });
 	return this.http.post('http://localhost:8080/projectdeveloper-app-aw/users',
-		JSON.stringify(
+	JSON.stringify(
 		{
-			"firstName":"angular",
-			"lastName":"angular",
-			"email":"angular@gmail.com",
-			"password":"12345678",
-			"addresses":[
-			{
-				"city":"Vancouver",
-				"country":"Canada",
-				"streetName":"123 Street fourth",
-				"postalCode":"4ML 7VL",
-				"type":"shipping",
-				"phone":"6044405689"
-
-			},{
-				"city":"Vancouver",
-				"country":"Canada",
-				"streetName":"123 Street fourth",
-				"postalCode":"4ML 7VL",
-				"type":"billing",
-				"phone":"6044405689"
-
-			}
-			]
-
+			"firstName": this.user.firstName,
+			"lastName": this.user.lastName,
+			"email": this.user.email,
+			"password": this.user.password
 		}
 
-		),options).subscribe(resp => {
-
-		console.log(resp);
-	});
+		),options)
+	    .subscribe(resp => {
+	   	      this.connectLogin(this.user);
+	},(err) => {
+    	 console.log(err);
+    	 this.showError.emit(true);
+    });
 
 	}
 

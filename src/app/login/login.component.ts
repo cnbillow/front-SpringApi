@@ -5,7 +5,6 @@ import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import { User } from '../entity/user';
 import { ModalErrosComponent } from '../shared/modal-erros/modal-erros.component';
-
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -46,16 +45,11 @@ export class LoginComponent implements OnInit {
 
   	  if(this.loginForm.valid) {
 
-          this.user.email = "hqDeveloper3@gmail.com";
-          this.user.password = "12345678sss";
+          this.user.email = this.loginForm.get('email').value.trim();
+          this.user.password = this.loginForm.get('password').value.trim();
           this.authetication.connectLogin(this.user);
 
-          // console.log(this.user);
-     
-          // this.reserForm();
-          // don't forget to use .trim();
        }
-
 
         Object.keys(this.loginForm.controls).forEach(campo => {
            const input = this.loginForm.get(campo);
@@ -84,12 +78,6 @@ export class LoginComponent implements OnInit {
   applyCssError(input){
   	 return this.loginForm.get(input).touched && this.loginForm.get(input).errors;
   }
-
-tetste(){
-  console.log("calll here");
-}
- 
-
 
 
 }
