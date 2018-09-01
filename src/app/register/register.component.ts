@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 
 
-import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {AuthenticationService} from '../service/authentication.service';
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       'last_Name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(30)])],
       'email' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.email])],
       'password' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30)])],
-      'password_confirm' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30)])],
+      'password_confirm' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30), this.passwordConfirming])],
 
     });
 
@@ -78,15 +78,27 @@ export class RegisterComponent implements OnInit {
      
   }
   
-   applyCssError(input){
+ applyCssError(input){
 
      return this.registerForm.get(input).touched && this.registerForm.get(input).errors;
  
   }
 
+ passwordConfirming(c: FormGroup): any {
 
-
+      if(!c.parent || !c) return;
+        const pwd = c.parent.get('password').value;
+        const cpwd= c.parent.get('password_confirm').value;
+        return c.parent.get('password').value === c.parent.get('password_confirm').value ? null : { 'mismatch': true };
+        
+    }
 
 
 
 }
+
+
+
+
+
+

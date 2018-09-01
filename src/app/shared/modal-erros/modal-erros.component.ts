@@ -15,7 +15,7 @@ import * as $ from 'jquery';
 export class ModalErrosComponent implements OnInit {
 
   @Input() msgError: String;
-  // modal : String;
+   modal : String;
 
  closeResult: string;
 
@@ -31,6 +31,8 @@ export class ModalErrosComponent implements OnInit {
        // $('.modal').modal();
        // $('#modal1').modal('open');
        // $('.trigger-modal').modal();
+
+
     
   }
 

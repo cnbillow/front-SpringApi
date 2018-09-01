@@ -76,6 +76,8 @@ connectRegister(user:User){
 		return this.user.login;
 	}
 
+	
+
 
 
 
