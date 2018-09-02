@@ -66,7 +66,7 @@ connectRegister(user:User){
 	    .subscribe(resp => {
 	   	      this.connectLogin(this.user);
 	},(err) => {
-    	 console.log(err);
+    	 
     	 this.showError.emit(true);
     });
 

@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
    registerForm : FormGroup;
    inconType : String;
    inputType : String;
+   showModal : boolean;
 
   constructor(private formBuilder: FormBuilder,
               private authetication:AuthenticationService,
@@ -39,6 +40,11 @@ export class RegisterComponent implements OnInit {
 
     this.inconType = "visibility";
     this.inputType = "password";
+
+
+      this.authetication.showError.subscribe(
+            show => this.showModal = show
+       );
 
   }
 
