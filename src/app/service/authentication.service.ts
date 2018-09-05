@@ -38,6 +38,8 @@ connectLogin(user:User){
 
    	this.user.token = resp.headers.get('Authorization');
    	this.user.userId = resp.headers.get('UserId');
+   	this.user.firstName = resp.headers.get('FirstName');
+   	this.user.lastName = resp.headers.get('LastName');
    	this.user.login = true;
    	this.router.navigateByUrl('/dashboard');
 
