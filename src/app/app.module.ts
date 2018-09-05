@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { User } from './entity/user';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+import { TestResolver } from './guards/testResolver.resolver';
+
+// import { TestResolver } from './guards/testResolver.resolver';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { AuthGuard } from './guards/auth.guard';
   ],
   providers: [AuthenticationService,
               User, 
-              AuthGuard
+              AuthGuard,
+              TestResolver
             ],
   bootstrap: [AppComponent]
 })
