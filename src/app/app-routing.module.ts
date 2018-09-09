@@ -10,7 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AuthGuard } from './guards/auth.guard';
-import {TestResolver} from './guards/testResolver.resolver';
+// import {TestResolver} from './guards/testResolver.resolver';
 
 
 const appRoutes: Routes = [
@@ -21,7 +21,7 @@ const appRoutes: Routes = [
       { path: 'register', component: RegisterComponent },
         { path: 'dashboard', component: DashboardComponent,
            canActivate: [AuthGuard],
-           resolve : { allTest: TestResolver}
+    
         },
       { path: '**',redirectTo : '/home' , pathMatch: "full"},
 ];

@@ -1,5 +1,6 @@
   <nav class="nav">
-    <div class="nav-wrapper"> 
+    <div class="nav-wrapper">
+      {{ ' '}}
       <a class="nameUser">Hi,{{this.user.firstName}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Sass</a></li>
@@ -8,4 +9,29 @@
       </ul>
     </div>
   </nav>
+
+  <ul class="collapsible" data-collapsible="expandable" materialize="collapsible">
+      <li class="collection" *ngFor="let test of tests">
+        <div class="collection-item collapsible-header">{{test.restaurant}}</div>
+        <div class="collection-item collapsible-body expandableBody">
+            <span class="badge btns"> 
+             <a class="btn-floating btn-small cyan pulse btnEdit">
+               <i class="material-icons">remove</i>
+             </a>
+              <a class="btn-floating btn-small cyan pulse">
+               <i class="material-icons">edit</i>
+             </a>
+          </span>
+          <h2 class="center-align">{{test.restaurant}}</h2>
+          <h4 class="center-align">{{test.dateAppoiment}}</h4>
+          <h6 class="center-align">{{test.amountPeople}}</h6>
         
+        </div>
+      </li>
+ </ul>  
+
+
+
+
+
+

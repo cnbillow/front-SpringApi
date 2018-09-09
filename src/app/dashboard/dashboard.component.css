@@ -1,6 +1,22 @@
 .nav{
 	background-color: teal;
 }
+
 .nameUser{
 	margin-right: 700px;
+}
+
+.btns{
+  height: 50px;
+  
+}
+
+.btnEdit{
+	 background-color:red !important;
+}
+
+.expandableBody{
+	height: 120px;
+	background-color: #b2dfdb;
+   
 }
