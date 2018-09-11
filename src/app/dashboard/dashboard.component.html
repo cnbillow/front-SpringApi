@@ -1,11 +1,9 @@
-  <nav class="nav">
+
+  <nav style="background-color: teal">
     <div class="nav-wrapper">
-      {{ ' '}}
-      <a class="nameUser">Hi,{{this.user.firstName}}</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+      <a class="brand-logo center">Hi,{{this.user.firstName}}</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">Create New Appoitment</a></li>
       </ul>
     </div>
   </nav>
@@ -18,7 +16,7 @@
              <a class="btn-floating btn-small cyan pulse btnEdit">
                <i class="material-icons">delete</i>
              </a>
-              <a class="btn-floating btn-small cyan pulse">
+              <a  (click)="updateTest(test.testId)" class="btn-floating btn-small cyan pulse">
                <i class="material-icons">edit</i>
              </a>
           </span>

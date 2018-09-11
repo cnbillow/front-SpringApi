@@ -1,8 +1,9 @@
 import { Component, OnInit , Input} from '@angular/core';
 
+import {Observable} from 'rxjs';
 import { User } from '../entity/user';
 import { TestService } from '../service/testService.service';
-import { Subscription } from 'rxjs';
+
 import { Router } from '@angular/router';
 import { Test } from '../entity/test';
 
@@ -16,9 +17,8 @@ import { Test } from '../entity/test';
 export class DashboardComponent implements OnInit {
 
   @Input() userName: String;
-  alltest : Subscription;
   tests: Test[] = [];
-  
+  tests$: Observable<Test[]>;
 
   constructor(private user:User, 
     private testService:TestService, private router: Router) { }
@@ -31,7 +31,8 @@ export class DashboardComponent implements OnInit {
       accordion : true
     });
 
-    // this.testService.gerAllTests().subscribe(data => this.tests = data['body']);   
+       // this.testService.gerAllTests().subscribe(data => this.tests = data['body']); 
+       // this.tests$ = this.testService.gerAllTests();
     this.testService.gerAllTests()
     .subscribe(data => 
     {
@@ -46,9 +47,9 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  updateTest(){
+  updateTest(testid: Test){
 
-  	// this.router.navigate();
+     this.router.navigate(['updateTest/', testid,'update']);
 
   }
 

@@ -16,7 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { User } from './entity/user';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
-// import { TestResolver } from './guards/testResolver.resolver';
+import { CreateTestComponent } from './test/create-test/create-test.component';
+import { UpdateTestComponent } from './test/update-test/update-test.component';
+import {DetailsTestResolver} from './guards/detailsTestResolver';
+import { ListTestComponent } from './test/list-test/list-test.component';
 // import { Test } from './entity/test';
 
 @NgModule({
@@ -27,22 +30,30 @@ import { AuthGuard } from './guards/auth.guard';
     RegisterComponent,
     ControlErrorsComponent,
     ModalErrosComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateTestComponent,
+    UpdateTestComponent,
+    ListTestComponent
     
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-  ],
-  providers: [AuthenticationService,
-              User, 
-              AuthGuard,
     
-            ],
+  ],
+  providers: [
+
+    AuthenticationService,
+    User, 
+    AuthGuard,
+    DetailsTestResolver
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
