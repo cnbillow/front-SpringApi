@@ -11,7 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CreateTestComponent } from './test/create-test/create-test.component';
 import { UpdateTestComponent } from './test/update-test/update-test.component';
-import {DetailsTestResolver} from './guards/detailsTestResolver';
+import { ListTestComponent }   from './test/list-test/list-test.component';
+import { DetailsTestResolver } from './guards/detailsTestResolver';
 
 
 const appRoutes: Routes = [
@@ -45,6 +46,17 @@ const appRoutes: Routes = [
           resolve:{ obTest : DetailsTestResolver }
          
          },
+          { 
+          path: 'listAppoitment', 
+          component: ListTestComponent,
+          canActivate: [AuthGuard]
+        },
+        { 
+          path: 'createTestComponent', 
+          component: CreateTestComponent,
+          canActivate: [AuthGuard],
+
+        },
       { 
         path: '**',
         redirectTo : '/home' , 

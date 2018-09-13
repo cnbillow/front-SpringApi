@@ -3,32 +3,15 @@
     <div class="nav-wrapper">
       <a class="brand-logo center">Hi,{{this.user.firstName}}</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Create New Appoitment</a></li>
+        <li><a routerLink="/createTestComponent">Create New Appoitment</a></li>
+       <!--  <li><a (click)="goListTest()">All Appoiment</a></li> -->
+        <li><a [routerLink]="['/listAppoitment']"
+               [routerLinkActive]="['active']">All Appoiment</a></li>
       </ul>
     </div>
   </nav>
 
-  <ul class="collapsible" data-collapsible="expandable" materialize="collapsible">
-      <li class="collection" *ngFor="let test of tests">
-        <div class="collection-item collapsible-header">{{test.restaurant}}</div>
-        <div class="collection-item collapsible-body expandableBody">
-            <span class="badge btns"> 
-             <a class="btn-floating btn-small cyan pulse btnEdit">
-               <i class="material-icons">delete</i>
-             </a>
-              <a  (click)="updateTest(test.testId)" class="btn-floating btn-small cyan pulse">
-               <i class="material-icons">edit</i>
-             </a>
-          </span>
-          <h2 class="center-align">{{test.restaurant}}</h2>
-          <h4 class="center-align">{{test.dateAppoiment}}</h4>
-          <h4 class="center-align">{{test.amountPeople}}</h4>
-        
-        </div>
-      </li>
- </ul>  
-
-
+ 
 
 
 

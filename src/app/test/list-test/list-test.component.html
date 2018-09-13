@@ -1,3 +1,19 @@
-<p>
-  list-test works!
-</p>
+<app-dashboard></app-dashboard>
+  <ul class="collapsible" data-collapsible="expandable" materialize="collapsible">
+      <li class="collection" *ngFor="let test of tests">
+        <div class="collection-item collapsible-header">{{test.restaurant}}</div>
+        <div class="collection-item collapsible-body expandableBody">
+            <span class="badge btns"> 
+             <a class="btn-floating btn-small cyan pulse btnEdit">
+               <i class="material-icons">delete</i>
+             </a>
+              <a  (click)="updateTest(test.testId)" class="btn-floating btn-small cyan pulse">
+               <i class="material-icons">edit</i>
+             </a>
+          </span>
+          <h2 class="center-align">{{test.restaurant}}</h2>
+          <h4 class="center-align">{{test.dateAppoiment}}</h4>
+          <h4 class="center-align">{{test.amountPeople}}</h4>
+        </div>
+      </li>
+ </ul>  
