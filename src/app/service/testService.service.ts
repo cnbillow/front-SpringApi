@@ -29,7 +29,7 @@ export class TestService {
 		headers.append('Content-Type', 'application/json');
 		let options = new RequestOptions({ headers: headers });
 		return this.http.get('http://localhost:8080/projectdeveloper-app-aw/test?page=0&limit=10',options);
-		
+
 	}
 	findTestById(testid: Test){
 
@@ -41,7 +41,7 @@ export class TestService {
 
 	}
 	updateTest(test: Test){
-		
+
 		let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
 		headers.append('Content-Type', 'application/json');
@@ -62,6 +62,28 @@ export class TestService {
 		});
 
 	}
+
+    createTest(test: Test){
+
+    	let headers = new Headers();
+		headers.append('Authorization', String(this.user.token));
+		headers.append('Content-Type', 'application/json');
+		let options = new RequestOptions({ headers: headers });
+		return this.http.post('http://localhost:8080/projectdeveloper-app-aw/test',
+			JSON.stringify(
+			{
+				"restaurant": test.restaurant,
+				"amountPeople": test.amountPeople,
+				// "dateAppoiment": test.dateAppoiment,
+				"dateAppoiment": "2019-09-01",
+			}
+			),options)
+		.subscribe(resp => {
+			this.router.navigateByUrl('/listAppoitment');
+		},(err) => {
+			this.showError.emit(true);
+		});
+    }
 
 
 

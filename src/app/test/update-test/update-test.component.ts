@@ -14,7 +14,7 @@ export class UpdateTestComponent implements OnInit {
 
 	inscrition : Subscription;
   tests: Test;
-  newtests: Test[] = [];
+
   updateForm : FormGroup;
 
   constructor( private activatedRoute: ActivatedRoute,
@@ -54,16 +54,8 @@ export class UpdateTestComponent implements OnInit {
     onSubmit(){
 
       if(this.updateForm.valid) {
-              
-           // console.log(this.updateForm.value);
            this.tests = this.updateForm.value;
-           this.testService.updateTest(this.tests);
-         
-          
-          // this.user.email = this.loginForm.get('email').value.trim();
-          // this.user.password = this.loginForm.get('password').value.trim();
-          // this.authetication.connectLogin(this.user);
-
+           this.testService.updateTest(this.tests);      
        }
 
         Object.keys(this.updateForm.controls).forEach(campo => {
