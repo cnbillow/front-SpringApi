@@ -20,7 +20,41 @@ import { CreateTestComponent } from './test/create-test/create-test.component';
 import { UpdateTestComponent } from './test/update-test/update-test.component';
 import {DetailsTestResolver} from './guards/detailsTestResolver';
 import { ListTestComponent } from './test/list-test/list-test.component';
-// import { Test } from './entity/test';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatFormFieldModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -44,6 +78,18 @@ import { ListTestComponent } from './test/list-test/list-test.component';
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
+    MatDatepickerModule,
+    // Material
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatPaginatorModule, 
+    MatTableModule, 
+    MatSortModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatGridListModule
+    // end
     
   ],
   providers: [
@@ -51,7 +97,8 @@ import { ListTestComponent } from './test/list-test/list-test.component';
     AuthenticationService,
     User, 
     AuthGuard,
-    DetailsTestResolver
+    DetailsTestResolver,
+    MatDatepickerModule
     
   ],
   bootstrap: [AppComponent]

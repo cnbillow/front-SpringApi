@@ -42,7 +42,7 @@ export class TestService {
 	}
 	updateTest(test: Test){
 
-		let headers = new Headers();
+ 	let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
 		headers.append('Content-Type', 'application/json');
 		let options = new RequestOptions({ headers: headers });
@@ -65,6 +65,8 @@ export class TestService {
 
     createTest(test: Test){
 
+    	console.log(test);
+
     	let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
 		headers.append('Content-Type', 'application/json');
@@ -74,8 +76,8 @@ export class TestService {
 			{
 				"restaurant": test.restaurant,
 				"amountPeople": test.amountPeople,
-				// "dateAppoiment": test.dateAppoiment,
-				"dateAppoiment": "2019-09-01",
+			    "dateAppoiment": test.dateAppoiment,
+				
 			}
 			),options)
 		.subscribe(resp => {

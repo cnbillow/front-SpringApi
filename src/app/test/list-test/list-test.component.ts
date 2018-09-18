@@ -23,7 +23,7 @@ export class ListTestComponent implements OnInit {
 
 	ngOnInit() {
 
-		$('.collapsible').collapsible({
+		(<any>$(".collapsible")).collapsible({
 			accordion : true
 		});
 
@@ -42,7 +42,7 @@ export class ListTestComponent implements OnInit {
 	}
 	 updateTest(testid: Test){
 
-     this.router.navigate(['updateTest/', testid,'update']);
+     this.router.navigate(['updateTest/', testid]);
  
      }
 

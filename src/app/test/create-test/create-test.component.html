@@ -1,54 +1,53 @@
-<app-dashboard></app-dashboard>
 
-<div class="col s12">
-	<form class="col s12" [formGroup]="createForm" (ngSubmit)="onSubmit()">
-		<div class="form-container">
-			<div class="row">   
-				<div class="input-field col s12">
-					<i class="material-icons prefix">place</i>
-					<input id="icon_prefix" type="text" formControlName="restaurant"
-					 class="validate"  required>
-					<label for="icon_prefix" >Restaurant Name</label>
-				</div>
-				  <app-control-errors
-           	      [showError]="applyCssError('restaurant')"
-                  msgError="restaurant required"
-                   >
-                  </app-control-errors>
+<div class="container">
+	<app-dashboard></app-dashboard>
+	<form [formGroup]="createForm" (ngSubmit)="onSubmit()">	 	
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">place</i>
+				<input id="icon_prefix" type="text" formControlName="restaurant"
+				class="validate ssss"  required>
+				<label for="icon_prefix" >Restaurant Name</label>
+			<div class="error">
+				<app-control-errors
+				  [showError]="applyCssError('amountPeople')"
+				   msgError="Restaurant Name required"
+					>
+	     		</app-control-errors>
+			</div> 
 			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix">people</i>
-					<input id="icon_telephone" type="text" formControlName="amountPeople"
-					 class="validate" required>
-					<label for="icon_telephone" >Amount People</label>
-				</div>
-				  <app-control-errors
-                   [showError]="applyCssError('amountPeople')"
-                   msgError="Amount required"
-                   >
-                   </app-control-errors>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix">date_range</i>
-					<input id="icon_telephone" type="text" formControlName="dateAppoiment"
-					class="datepicker">
-					<label for="icon_telephone">Date</label>
-				</div>
-				  <app-control-errors
-            	  [showError]="applyCssError('dateAppoiment')"
-          	 	  msgError="Date required"
-          		  >
-            	 </app-control-errors>
-			</div>
-			<button class="btn btnregister" type="submit" name="action">Send</button>
+	  </div>	
+	<div class="row">
+		<div class="input-field col s12">
+			<i class="material-icons prefix">people</i>
+			<input id="icon_telephone" type="text"  formControlName="amountPeople"
+			class="validate" required>
+			<label for="icon_telephone">Amount People</label>
+			<div class="error">
+				<app-control-errors
+				  [showError]="applyCssError('amountPeople')"
+				   msgError="Amount People required"
+					>
+	     		</app-control-errors>
+			</div>  
 		</div>
-	</form>
 </div>
-<div *ngIf="showModal">
-	<app-modal-erros
-	msgError="Email or password incorrect"></app-modal-erros>
+<div class="row">
+	<div class="input-field col s12">
+		<i class="material-icons prefix">date_range</i>
+		<input id="icon_telephone" id="dateAppoiment" type="text" formControlName="dateAppoiment"
+		class="datepicker" [(ngModel)]="dateTime" #dateAppoiment>
+		<label for="icon_telephone">Date</label>
+	</div>
+	<div style="display: none;" id="date" #date></div>
+</div>
+<div class="row">
+	<div class="col s3"></div> 
+	<button class="btn btnregister" type="submit" name="action">Send</button>
+	<div class="col s3"></div> 
 </div>
 
+</form>
+
+</div>
 

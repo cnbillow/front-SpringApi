@@ -40,7 +40,7 @@ const appRoutes: Routes = [
           canActivate: [AuthGuard]
         },
         { 
-          path: 'updateTest/:testId/update', 
+          path: 'updateTest/:testId', 
           component: UpdateTestComponent,
           canActivate: [AuthGuard],
           resolve:{ obTest : DetailsTestResolver }

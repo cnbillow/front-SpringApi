@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter,Input, ViewChild, ElementRef } from '@angular/core';
 import { Test } from '../../entity/test';
 import { Router, ActivatedRoute} from '@angular/router';
 import { Subscription } from 'rxjs';
-import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup,Validators,FormsModule} from '@angular/forms';
 import { TestService } from '../../service/testService.service';
+
+
+
 
 @Component({
   selector: 'app-create-test',
@@ -12,34 +15,47 @@ import { TestService } from '../../service/testService.service';
 })
 export class CreateTestComponent implements OnInit {
 
-   createForm : FormGroup;
-   tests: Test;
-   
+    createForm : FormGroup;
+    tests: Test;
+    dateTime: String;
+    @ViewChild('date') myId: ElementRef;
+  
    constructor(private formBuilder: FormBuilder,
-               private testService:TestService ) { }
+               private testService:TestService) { }
 
   ngOnInit() {
-    
+
+       var datte = new Date();
+       this.dateTime = String(datte.getFullYear()+'/'+datte.getMonth()+'/'+datte.getDate());
+   
+     
      this.createForm = this.formBuilder.group({      
       'restaurant' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(20)])],
       'amountPeople' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(1),Validators.maxLength(10)])],
-      'dateAppoiment' : [ null ],
+      'dateAppoiment' : [null, Validators.compose([Validators.required])]
      });
 
-
-     $('.datepicker').pickadate({
+       (<any>$(".datepicker")).pickadate({
          min: true,
          today: 'Today',
          clear: 'Clear',
-         closeOnSelect: false
-     });
+         closeOnSelect: false,
+         formatSubmit: "yyyy-mm-dd",
+         onSet: function() {    
+              $("#date").html(this.get('select', 'yyyy-mm-dd'));
+           },      
+        });
 
-  }
+      }
 
       onSubmit(){
 
-      if(this.createForm.valid) {
+      if(this.createForm.valid) {   
            this.tests = this.createForm.value;
+            this.tests.dateAppoiment = String(this.myId.nativeElement.textContent);
+            if(this.tests.dateAppoiment === "")
+                this.tests.dateAppoiment = this.dateTime;
+
            this.testService.createTest(this.tests);      
        }
 

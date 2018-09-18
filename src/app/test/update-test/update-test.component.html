@@ -6,44 +6,47 @@
 				<div class="input-field col s12">
 					<i class="material-icons prefix">place</i>
 					<input id="icon_prefix" type="text" formControlName="restaurant"
-					 class="validate"  required>
+					class="validate"  required>
 					<label for="icon_prefix" [ngClass]="{'active': this.tests.restaurant }">Restaurant Name</label>
-				</div>
-				  <app-control-errors
-           	      [showError]="applyCssError('restaurant')"
-                  msgError="restaurant required"
-                   >
-                  </app-control-errors>
+					<div class="error">
+						<app-control-errors
+						[showError]="applyCssError('amountPeople')"
+						msgError="Restaurant Name required"
+						>
+					</app-control-errors>
+				</div> 
 			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix">people</i>
-					<input id="icon_telephone" type="text" formControlName="amountPeople"
-					 class="validate" required>
-					<label for="icon_telephone" [ngClass]="{'active': this.tests.amountPeople}">Amount People</label>
-				</div>
-				  <app-control-errors
-                   [showError]="applyCssError('amountPeople')"
-                   msgError="Email required"
-                   >
-                   </app-control-errors>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix">date_range</i>
-					<input id="icon_telephone" type="text" formControlName="dateAppoiment"
-					class="datepicker" required>
-					<label for="icon_telephone" [ngClass]="{'active': this.tests.dateAppoiment}">Date</label>
-				</div>
-				  <app-control-errors
-            	  [showError]="applyCssError('dateAppoiment')"
-          	 	  msgError="Email required"
-          		  >
-            	 </app-control-errors>
-			</div>
-			<button class="btn btnregister" type="submit" name="action">Send</button>
+			
 		</div>
-	</form>
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="material-icons prefix">people</i>
+				<input id="icon_telephone" type="text" formControlName="amountPeople"
+				class="validate" required>
+				<label for="icon_telephone" [ngClass]="{'active': this.tests.amountPeople}">Amount People</label>
+				<div class="error">
+					<app-control-errors
+					[showError]="applyCssError('amountPeople')"
+					msgError="Restaurant Name required"
+					>
+				</app-control-errors>
+			</div> 
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<i class="material-icons prefix">date_range</i>
+			<input id="icon_telephone" type="text" formControlName="dateAppoiment"
+			class="datepicker" required>
+			<label for="icon_telephone" [ngClass]="{'active': this.tests.dateAppoiment}">Date</label>
+			<div style="display: none;" id="date" #date></div>
+		</div>
+
+	</div>
+	<button class="btn btnregister" type="submit" name="action">Send</button>
+</div>
+</form>
 </div>
 <div *ngIf="showModal">
 	<app-modal-erros

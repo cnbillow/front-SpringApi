@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
  login: boolean;
  register: boolean;
  type: String;
+  
 
   constructor() { }
 
