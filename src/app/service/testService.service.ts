@@ -64,9 +64,7 @@ export class TestService {
 	}
 
     createTest(test: Test){
-
-    	console.log(test);
-
+    
     	let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
 		headers.append('Content-Type', 'application/json');
@@ -85,6 +83,20 @@ export class TestService {
 		},(err) => {
 			this.showError.emit(true);
 		});
+    }
+    removeTest(testid: Test){
+
+        let headers = new Headers();
+		headers.append('Authorization', String(this.user.token));
+		headers.append('Content-Type', 'application/json');
+		let options = new RequestOptions({ headers: headers });
+		return this.http.delete('http://localhost:8080/projectdeveloper-app-aw/test/'+String(testid),options)
+		.subscribe(resp => {
+			this.router.navigateByUrl('/createTestComponent');
+		},(err) => {
+			this.showError.emit(true);
+		});
+
     }
 
 

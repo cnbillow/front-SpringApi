@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import {Observable} from 'rxjs';
 import { User } from '../../entity/user';
 import { TestService } from '../../service/testService.service';
 import { Test } from '../../entity/test';
-
 import { Router } from '@angular/router';
 
 
@@ -15,7 +14,9 @@ import { Router } from '@angular/router';
 export class ListTestComponent implements OnInit {
 
 	tests: Test[] = [];
-	tests$: Observable<Test[]>;
+	// tests$: Observable<Test[]>;
+	objectRemove: Test;
+
 
 	constructor(private user:User, 
 		private testService:TestService, 
@@ -40,10 +41,24 @@ export class ListTestComponent implements OnInit {
 		}) 
 
 	}
-	 updateTest(testid: Test){
+	 private updateTest(testid: Test){
 
-     this.router.navigate(['updateTest/', testid]);
+       this.router.navigate(['updateTest/', testid]);
  
+     }
+
+     private removeTest(test: Test){
+     	this.objectRemove = test; 
+     	$('#modal1').show();
+
+     }
+
+     private remmoveConfirm(testId: Test){
+     	 this.testService.removeTest(testId);
+     }
+
+     private cancelRemove(){
+       $('#modal1').hide();
      }
 
 
