@@ -8,7 +8,7 @@
             <label for="email">Email</label>
              <app-control-errors
               [showError]="applyCssError('email')"
-               msgError="Email required"
+               msgError={{msgError}}
             >
             </app-control-errors>
           </div>
@@ -20,12 +20,12 @@
              <i class="material-icons prefix icons" (click)="hideOrShowPassWord()">{{inconType}}</i>
               <app-control-errors
               [showError]="applyCssError('password')"
-               msgError="Password required"
+               msgError={{msgError}}
               >
             </app-control-errors>
           </div>
         </div>
-          <button class="btn btnregister" type="submit" name="action">Sing up</button>
+          <button class="btn btnregister" type="submit" name="action">Log in</button>
       </div>
     </form>
   </div>

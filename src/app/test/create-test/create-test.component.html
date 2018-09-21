@@ -10,8 +10,8 @@
 				<label for="icon_prefix" >Restaurant Name</label>
 			<div class="error">
 				<app-control-errors
-				  [showError]="applyCssError('amountPeople')"
-				   msgError="Restaurant Name required"
+				  [showError]="applyCssError('restaurant')"
+				   msgError={{msgError}}
 					>
 	     		</app-control-errors>
 			</div> 
@@ -26,7 +26,7 @@
 			<div class="error">
 				<app-control-errors
 				  [showError]="applyCssError('amountPeople')"
-				   msgError="Amount People required"
+				   msgError={{msgError}}
 					>
 	     		</app-control-errors>
 			</div>  
@@ -36,8 +36,8 @@
 	<div class="input-field col s12">
 		<i class="material-icons prefix">date_range</i>
 		<input id="icon_telephone" id="dateAppoiment" type="text" formControlName="dateAppoiment"
-		class="datepicker" [(ngModel)]="dateTime" #dateAppoiment>
-		<label for="icon_telephone">Date</label>
+		class="datepicker" [(ngModel)]="dateTime" [ngClass]="{'active': dateTime}" #dateAppoiment>
+		<!-- <label for="icon_telephone">Date</label> -->
 	</div>
 	<div style="display: none;" id="date" #date></div>
 </div>

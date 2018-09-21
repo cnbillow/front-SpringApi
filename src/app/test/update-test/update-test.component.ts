@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef, ChangeDetectorRef, Input} from '@angular/core';
 import { Test } from '../../entity/test';
 import { Router, ActivatedRoute} from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -14,21 +14,26 @@ export class UpdateTestComponent implements OnInit {
 
 	inscrition : Subscription;
   tests: Test;
+  dateTime: String;
   @ViewChild('date') myId: ElementRef;
-
+  @Input() msgError: String;
 
   updateForm : FormGroup;
 
   constructor( private activatedRoute: ActivatedRoute,
                private formBuilder: FormBuilder,
-               private testService:TestService ) { }
+               private testService:TestService,
+               private cdRef:ChangeDetectorRef ) { }
 
   ngOnInit() {
 
+        var datte = new Date();
+       this.dateTime = String(datte.getFullYear()+'/'+datte.getMonth()+'/'+datte.getDate());
+
     this.inscrition = this.activatedRoute.data.subscribe(
-  	   	(info) => {
-         this.tests = JSON.parse(info.obTest['_body']);
-  	   	}
+  	   	  (info) => {
+            this.tests = JSON.parse(info.obTest['_body']);
+  	     	}
   		 );
 
     this.updateForm = this.formBuilder.group({      
@@ -53,19 +58,26 @@ export class UpdateTestComponent implements OnInit {
       
   }
 
-  ngOnDestroy(){
+  private ngOnDestroy(){
   	this.inscrition.unsubscribe();
   }
 
-    onSubmit(){
+  private ngAfterViewChecked() {
+ 
+    this.cdRef.detectChanges();
+  }
+
+   private onSubmit(){
 
       if(this.updateForm.valid) {
+       
            this.tests = this.updateForm.value;
            this.tests.dateAppoiment = String(this.myId.nativeElement.textContent);
+             console.log(this.tests.dateAppoiment);
             if(this.tests.dateAppoiment === "")
-                this.tests.dateAppoiment = this.tests.dateAppoiment;
+                this.tests.dateAppoiment = this.dateTime;
               
-           this.testService.updateTest(this.tests);      
+            this.testService.updateTest(this.tests);      
        }
 
         Object.keys(this.updateForm.controls).forEach(campo => {
@@ -75,8 +87,26 @@ export class UpdateTestComponent implements OnInit {
 
   }
 
-   applyCssError(input){
-     return this.updateForm.get(input).touched && this.updateForm.get(input).errors;
+   private applyCssError(input){
+     
+   const arrayErrors : Array<{}> = [
+    {type: 'required', text: 'is required'},
+    {type: 'pattern', text: 'is invalid!'},
+    {type: 'minlength', text: 'minimum length is'},
+    {type: 'maxlength', text: 'maximum length is'},
+
+    ];
+   if(this.updateForm.get(input).touched && this.updateForm.get(input).errors){
+ 
+   for (var i = 0; i < arrayErrors.length; ++i) {   
+        if(this.updateForm.get(input).hasError(String(arrayErrors[i]['type']))){ 
+            if(this.updateForm.get(input).errors['minlength']){ 
+               return this.msgError = input+' '+String(arrayErrors[i]['text'])+' '+String(this.updateForm.get(input).errors.minlength.requiredLength);
+            }    
+              return this.msgError = input+' '+String(arrayErrors[i]['text']);
+        }
+      }
+    }
   }
 
 

@@ -10,8 +10,8 @@
 					<label for="icon_prefix" [ngClass]="{'active': this.tests.restaurant }">Restaurant Name</label>
 					<div class="error">
 						<app-control-errors
-						[showError]="applyCssError('amountPeople')"
-						msgError="Restaurant Name required"
+						[showError]="applyCssError('restaurant')"
+						 msgError={{msgError}}
 						>
 					</app-control-errors>
 				</div> 
@@ -27,7 +27,7 @@
 				<div class="error">
 					<app-control-errors
 					[showError]="applyCssError('amountPeople')"
-					msgError="Restaurant Name required"
+					 msgError={{msgError}}
 					>
 				</app-control-errors>
 			</div> 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input} from '@angular/core';
+import { Component, OnInit, Inject, Input, ChangeDetectorRef} from '@angular/core';
 
 
 import {FormBuilder, FormControl, FormGroup,Validators, AbstractControl} from '@angular/forms';
@@ -22,19 +22,21 @@ export class RegisterComponent implements OnInit {
    inconType : String;
    inputType : String;
    showModal : boolean;
+   @Input() msgError: String;
 
   constructor(private formBuilder: FormBuilder,
               private authetication:AuthenticationService,
-              private user:User) { }
+              private user:User,
+              private cdRef:ChangeDetectorRef) { }
 
   ngOnInit() {
      
   	this.registerForm = this.formBuilder.group({
-  		'first_Name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(30)])],
-      'last_Name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(30)])],
+  		'first_Name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(20)])],
+      'last_Name' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"), Validators.minLength(2),Validators.maxLength(20)])],
       'email' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.email])],
-      'password' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30)])],
-      'password_confirm' : [ null, Validators.compose([Validators.required,Validators.pattern(".*\\S.*[a-zA-z0-9_-]"),Validators.minLength(6),Validators.maxLength(30), this.passwordConfirming])],
+      'password' : [ null, Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(10)])],
+      'password_confirm' : [ null, Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(10), this.passwordConfirming])],
 
     });
 
@@ -48,7 +50,13 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  onSubmit(){
+  private ngAfterViewChecked() {
+ 
+    this.cdRef.detectChanges();
+  }
+
+  
+  private onSubmit(){
    
     if(this.registerForm.valid) {
 
@@ -68,11 +76,13 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  reserForm(){
+ 
+  private reserForm(){
     this.registerForm.reset();
   }
 
-  hideOrShowPassWord(){
+  
+  private hideOrShowPassWord(){
      if (this.inputType == 'password'){
           this.inputType = 'text';
           this.inconType = 'visibility_off';
@@ -84,13 +94,34 @@ export class RegisterComponent implements OnInit {
      
   }
   
- applyCssError(input){
+ 
+  private applyCssError(input){
 
-     return this.registerForm.get(input).touched && this.registerForm.get(input).errors;
+   const arrayErrors : Array<{}> = [
+    {type: 'required', text: 'is required'},
+    {type: 'email', text: 'is invalid!'},
+    {type: 'minlength', text: 'minimum length is'},
+    {type: 'maxlength', text: 'maximum length is '},
+    {type: 'mismatch', text:  'Password mismatch'},
+    ];
+
+  if(this.registerForm.get(input).touched && this.registerForm.get(input).errors){
+ 
+   for (var i = 0; i < arrayErrors.length; ++i) {   
+        if(this.registerForm.get(input).hasError(String(arrayErrors[i]['type']))){ 
+            if(this.registerForm.get(input).errors['minlength']){ 
+               return this.msgError = input+' '+String(arrayErrors[i]['text'])+' '+String(this.registerForm.get(input).errors.minlength.requiredLength);
+            }    
+              return this.msgError = input+' '+String(arrayErrors[i]['text']);
+        }
+      }
+    }
+  
  
   }
 
- passwordConfirming(c: FormGroup): any {
+ 
+  private passwordConfirming(c: FormGroup): any {
 
       if(!c.parent || !c) return;
         const pwd = c.parent.get('password').value;
