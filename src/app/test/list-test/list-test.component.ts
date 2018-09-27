@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 export class ListTestComponent implements OnInit {
 
 	tests: Test[] = [];
-	// tests$: Observable<Test[]>;
 	objectRemove: Test;
 
 
@@ -41,23 +40,23 @@ export class ListTestComponent implements OnInit {
 		}) 
 
 	}
-	 private updateTest(testid: Test){
+	  updateTest(testid: Test){
 
        this.router.navigate(['updateTest/', testid]);
  
      }
 
-     private removeTest(test: Test){
+      removeTest(test: Test){
      	this.objectRemove = test; 
      	$('#modal1').show();
 
      }
 
-     private remmoveConfirm(testId: Test){
+      remmoveConfirm(testId: Test){
      	 this.testService.removeTest(testId);
      }
 
-     private cancelRemove(){
+     cancelRemove(){
        $('#modal1').hide();
      }
 

@@ -50,12 +50,12 @@ export class CreateTestComponent implements OnInit {
 
       }
 
-  private ngAfterViewChecked() {
+   ngAfterViewChecked() {
  
     this.cdRef.detectChanges();
   }
 
-  private onSubmit(){
+   onSubmit(){
 
       if(this.createForm.valid) {   
            this.tests = this.createForm.value;
@@ -73,7 +73,7 @@ export class CreateTestComponent implements OnInit {
 
   }
 
-  private applyCssError(input){
+   applyCssError(input){
      
    const arrayErrors : Array<{}> = [
     {type: 'required', text: 'is required'},

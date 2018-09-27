@@ -11,7 +11,7 @@
                <i class="material-icons">edit</i>
              </a>
           </span>
-          <h5 class="center-align">About Appoiment</h5>
+          <h5 class="center-align">About Booking</h5>
           <h6 class="center-align">Restaurant Name: {{test.restaurant}}</h6>
           <h6 class="center-align amount">Amount People: {{test.amountPeople}}</h6>
           <h6 class="center-align date">Date Appoitment: {{test.dateAppoiment}}</h6>
@@ -23,15 +23,15 @@
 
     <div id="modal1" class="modal modal-fixed-footer" #modal1>
     <div class="modal-content">
-      <h4>have you sure want remove this appointment?</h4>
-        <h5>About Appoiment</h5>
+      <h4>Are you sure you want to remove these Booking?</h4>
+        <h5>About Booking</h5>
         <h6>Restaurant Name: {{this.objectRemove?.restaurant}}</h6>
         <h6>Amount People: {{this.objectRemove?.amountPeople}}</h6>
         <h6>Date Appoitment: {{this.objectRemove?.dateAppoiment}}</h6>
     </div>
     <div class="modal-footer">
       <a (click)="cancelRemove()" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
-      <a (click)="remmoveConfirm(this.objectRemove.testId)"class="modal-close waves-effect waves-green btn-flat">Confirm</a>
+      <a (click)="remmoveConfirm(this.objectRemove?.testId)"class="modal-close waves-effect waves-green btn-flat">Confirm</a>
     </div>
     </div>
     <!-- Modal Structure -->

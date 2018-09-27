@@ -43,12 +43,12 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  private ngAfterViewChecked() {
+  ngAfterViewChecked() {
  
     this.cdRef.detectChanges();
   }
 
-  private onSubmit(){
+   onSubmit(){
 
     if(this.loginForm.valid) {
 
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
- private hideOrShowPassWord() {
+  hideOrShowPassWord() {
 
     if (this.inputType == 'password'){
       this.inputType = 'text';
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private applyCssError(input){
+   applyCssError(input){
 
     const arrayErrors : Array<{}> = [
     {type: 'required', text: 'is required'},

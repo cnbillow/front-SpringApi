@@ -32,7 +32,7 @@ connectLogin(user:User){
    let headers = new Headers();
    headers.append('Content-Type', 'application/json; charset=utf-8');
    let options = new RequestOptions({ headers: headers });
-   return this.http.post('http://localhost:8080/projectdeveloper-app-aw/users/login',
+   return this.http.post('http://52.207.202.65:8080/project-app-ws/users/login',
    	JSON.stringify({"email" : this.user.email,"password" : this.user.password}),options)
    .subscribe(resp => {
 
@@ -53,9 +53,10 @@ connectLogin(user:User){
 connectRegister(user:User){
 
 	let headers = new Headers();
-	headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    headers.append('Accept', 'application/json;');
 	let options = new RequestOptions({ headers: headers });
-	return this.http.post('http://localhost:8080/projectdeveloper-app-aw/users',
+	return this.http.post('http://52.207.202.65:8080/project-app-ws/users',
 	JSON.stringify(
 		{
 			"firstName": this.user.firstName,
@@ -68,7 +69,7 @@ connectRegister(user:User){
 	    .subscribe(resp => {
 	   	      this.connectLogin(this.user);
 	},(err) => {
-    	 
+    	 console.log(err);
     	 this.showError.emit(true);
     });
 

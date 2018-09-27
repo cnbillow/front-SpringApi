@@ -50,13 +50,13 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  private ngAfterViewChecked() {
+  ngAfterViewChecked() {
  
     this.cdRef.detectChanges();
   }
 
   
-  private onSubmit(){
+   onSubmit(){
    
     if(this.registerForm.valid) {
 
@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
   }
 
   
-  private hideOrShowPassWord(){
+   hideOrShowPassWord(){
      if (this.inputType == 'password'){
           this.inputType = 'text';
           this.inconType = 'visibility_off';
@@ -95,7 +95,7 @@ export class RegisterComponent implements OnInit {
   }
   
  
-  private applyCssError(input){
+   applyCssError(input){
 
    const arrayErrors : Array<{}> = [
     {type: 'required', text: 'is required'},
@@ -121,7 +121,7 @@ export class RegisterComponent implements OnInit {
   }
 
  
-  private passwordConfirming(c: FormGroup): any {
+   passwordConfirming(c: FormGroup): any {
 
       if(!c.parent || !c) return;
         const pwd = c.parent.get('password').value;

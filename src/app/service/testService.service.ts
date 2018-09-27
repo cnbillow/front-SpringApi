@@ -26,27 +26,27 @@ export class TestService {
 
 		let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json');
+		headers.append('Content-Type', 'application/json; charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
-		return this.http.get('http://localhost:8080/projectdeveloper-app-aw/test?page=0&limit=10',options);
+		return this.http.get('http://52.207.202.65:8080/project-app-ws/test?page=0&limit=25',options);
 
 	}
 	findTestById(testid: Test){
 
 		let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json');
+		headers.append('Content-Type', 'application/json; charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
-		return this.http.get('http://localhost:8080/projectdeveloper-app-aw/test/'+String(testid),options);
+		return this.http.get('http://52.207.202.65:8080/project-app-ws/test/'+String(testid),options);
 
 	}
 	updateTest(test: Test){
 
  	let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json');
+		headers.append('Content-Type', 'application/json; charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
-		return this.http.put('http://localhost:8080/projectdeveloper-app-aw/test/'+String(test.testId),
+		return this.http.put('http://52.207.202.65:8080/project-app-ws/test/'+String(test.testId),
 			JSON.stringify(
 			{
 				"restaurant": test.restaurant,
@@ -67,9 +67,9 @@ export class TestService {
     
     	let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json');
+		headers.append('Content-Type', 'application/json; charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
-		return this.http.post('http://localhost:8080/projectdeveloper-app-aw/test',
+		return this.http.post('http://52.207.202.65:8080/project-app-ws/test',
 			JSON.stringify(
 			{
 				"restaurant": test.restaurant,
@@ -84,16 +84,17 @@ export class TestService {
 			this.showError.emit(true);
 		});
     }
-    removeTest(testid: Test){
+    removeTest(testid: Test) {
 
         let headers = new Headers();
 		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json');
+		headers.append('Content-Type', 'application/json; charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
-		return this.http.delete('http://localhost:8080/projectdeveloper-app-aw/test/'+String(testid),options)
+		return this.http.delete('http://52.207.202.65:8080/project-app-ws/test/'+String(testid),options)
 		.subscribe(resp => {
 			this.router.navigateByUrl('/createTestComponent');
 		},(err) => {
+			console.log(err);
 			this.showError.emit(true);
 		});
 

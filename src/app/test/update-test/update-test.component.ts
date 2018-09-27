@@ -43,9 +43,7 @@ export class UpdateTestComponent implements OnInit {
       'testId' : [ this.tests.testId]
      });
 
-
-
-       (<any>$(".datepicker")).pickadate({
+     (<any>$(".datepicker")).pickadate({
          min: true,
          today: 'Today',
          closeOnSelect: false,
@@ -58,22 +56,21 @@ export class UpdateTestComponent implements OnInit {
       
   }
 
-  private ngOnDestroy(){
+   ngOnDestroy(){
   	this.inscrition.unsubscribe();
   }
 
-  private ngAfterViewChecked() {
+   ngAfterViewChecked() {
  
     this.cdRef.detectChanges();
   }
 
-   private onSubmit(){
+   onSubmit(){
 
       if(this.updateForm.valid) {
        
            this.tests = this.updateForm.value;
            this.tests.dateAppoiment = String(this.myId.nativeElement.textContent);
-             console.log(this.tests.dateAppoiment);
             if(this.tests.dateAppoiment === "")
                 this.tests.dateAppoiment = this.dateTime;
               
@@ -87,7 +84,7 @@ export class UpdateTestComponent implements OnInit {
 
   }
 
-   private applyCssError(input){
+   applyCssError(input){
      
    const arrayErrors : Array<{}> = [
     {type: 'required', text: 'is required'},

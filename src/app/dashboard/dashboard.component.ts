@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   @Input() userName: String;
 
-  constructor(private user:User, 
+  constructor(public user:User, 
               private testService:TestService, 
               private router: Router) { }
 

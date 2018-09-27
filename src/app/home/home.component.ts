@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   	
   }
 
-  private checkClickButton(type){
+  checkClickButton(type){
 
        switch (type) {
        	case "register":

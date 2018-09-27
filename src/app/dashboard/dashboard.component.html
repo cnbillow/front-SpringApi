@@ -3,10 +3,9 @@
     <div class="nav-wrapper">
       <a class="brand-logo center">Hi,{{this.user.firstName}}</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a routerLink="/createTestComponent">Create New Appoitment</a></li>
-       <!--  <li><a (click)="goListTest()">All Appoiment</a></li> -->
+        <li><a routerLink="/createTestComponent">Create New Booking</a></li>
         <li><a [routerLink]="['/listAppoitment']"
-               [routerLinkActive]="['active']">All Appoiment</a></li>
+               [routerLinkActive]="['active']">All Booking</a></li>
       </ul>
     </div>
   </nav>
