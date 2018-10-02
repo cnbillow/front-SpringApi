@@ -1,15 +1,20 @@
 
-.btns{
-  height: 50px;
-  
+
+#usename{
+ padding: 30px;
+ background-color: teal;
 }
 
-.btnEdit{
-	 background-color:red !important;
+#container {
+  padding-left: 300px;
 }
 
-.expandableBody{
-	height: 120px;
-	background-color: #b2dfdb;
-   
+#content {
+  padding: 20px;
+}
+
+@media only screen and (max-width : 992px) {
+  #container {
+    padding-left: 0px;
+  }
 }

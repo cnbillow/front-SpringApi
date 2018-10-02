@@ -1,5 +1,14 @@
 .error
 {
    text-align: center !important;
+}
+
+#createForm{
+    margin-left: 300px;	
+}
+@media only screen and (max-width : 992px) {
+  #createForm {
+    margin-left: 10px !important; 
+  }
 
 }

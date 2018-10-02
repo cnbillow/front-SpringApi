@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ListTestComponent implements OnInit {
 
-	tests: Test[] = [];
+	tests: Test;
 	objectRemove: Test;
 
 
@@ -28,22 +28,12 @@ export class ListTestComponent implements OnInit {
 		});
 
 		this.testService.gerAllTests()
-		.subscribe(data => 
-		{
-			if (data['_body'].length > 0) {
-				let employee2 =  JSON.parse(data['_body']);
-				for (var i = employee2.length - 1; i >= 0; i--) {
-					this.tests.push(employee2[i]);
-				}
-			}
+		.subscribe(data => { this.tests = data; }) 
 
-		}) 
+	 }
 
-	}
 	  updateTest(testid: Test){
-
-       this.router.navigate(['updateTest/', testid]);
- 
+        this.router.navigate(['updateTest/', testid]);
      }
 
       removeTest(test: Test){

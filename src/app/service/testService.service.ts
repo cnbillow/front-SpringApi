@@ -22,14 +22,19 @@ export class TestService {
 		private httpClient: HttpClient) { }
 
 
-	gerAllTests(){
+	private myheaders(){
+	  const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+				'Authorization': String(this.user.token)
+			})
+		};
+    	 return httpOptions;
+	}
 
-		let headers = new Headers();
-		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json; charset=utf-8');
-		let options = new RequestOptions({ headers: headers });
-		return this.http.get('http://52.207.202.65:8080/project-app-ws/test?page=0&limit=25',options);
 
+	gerAllTests(): Observable<Test> {
+		return this.httpClient.get<Test>('http://localhost:8080/project-app-ws/test?page=0&limit=25', this.myheaders() );
 	}
 	findTestById(testid: Test){
 
@@ -37,24 +42,11 @@ export class TestService {
 		headers.append('Authorization', String(this.user.token));
 		headers.append('Content-Type', 'application/json; charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
-		return this.http.get('http://52.207.202.65:8080/project-app-ws/test/'+String(testid),options);
-
+		return this.http.get('http://localhost:8080/project-app-ws/test/'+String(testid),options);
 	}
-	updateTest(test: Test){
+	updateTest (test: Test) {
 
- 	let headers = new Headers();
-		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json; charset=utf-8');
-		let options = new RequestOptions({ headers: headers });
-		return this.http.put('http://52.207.202.65:8080/project-app-ws/test/'+String(test.testId),
-			JSON.stringify(
-			{
-				"restaurant": test.restaurant,
-				"amountPeople": test.amountPeople,
-				"dateAppoiment": test.dateAppoiment,
-			}
-
-			),options)
+		return this.httpClient.put<Test>('http://localhost:8080/project-app-ws/test/'+String(test.testId), test,  this.myheaders())
 		.subscribe(resp => {
 			this.router.navigateByUrl('/listAppoitment');
 		},(err) => {
@@ -63,34 +55,20 @@ export class TestService {
 
 	}
 
-    createTest(test: Test){
-    
-    	let headers = new Headers();
-		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json; charset=utf-8');
-		let options = new RequestOptions({ headers: headers });
-		return this.http.post('http://52.207.202.65:8080/project-app-ws/test',
-			JSON.stringify(
-			{
-				"restaurant": test.restaurant,
-				"amountPeople": test.amountPeople,
-			    "dateAppoiment": test.dateAppoiment,
-				
-			}
-			),options)
+	createTest(test: Test){
+
+		return this.httpClient.post<Test>('http://localhost:8080/project-app-ws/test', test, this.myheaders())
 		.subscribe(resp => {
 			this.router.navigateByUrl('/listAppoitment');
 		},(err) => {
 			this.showError.emit(true);
 		});
-    }
-    removeTest(testid: Test) {
 
-        let headers = new Headers();
-		headers.append('Authorization', String(this.user.token));
-		headers.append('Content-Type', 'application/json; charset=utf-8');
-		let options = new RequestOptions({ headers: headers });
-		return this.http.delete('http://52.207.202.65:8080/project-app-ws/test/'+String(testid),options)
+	}
+
+	removeTest(testid: Test) {
+
+		return this.httpClient.delete('http://localhost:8080/project-app-ws/test/'+String(testid), this.myheaders())
 		.subscribe(resp => {
 			this.router.navigateByUrl('/createTestComponent');
 		},(err) => {
@@ -98,7 +76,9 @@ export class TestService {
 			this.showError.emit(true);
 		});
 
-    }
+	}
+
+
 
 
 

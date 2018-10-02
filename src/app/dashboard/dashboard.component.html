@@ -1,17 +1,18 @@
 
-  <nav style="background-color: teal">
-    <div class="nav-wrapper">
-      <a class="brand-logo center">Hi,{{this.user.firstName}}</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a routerLink="/createTestComponent">Create New Booking</a></li>
-        <li><a [routerLink]="['/listAppoitment']"
-               [routerLinkActive]="['active']">All Booking</a></li>
-      </ul>
-    </div>
-  </nav>
-
- 
-
-
-
-
+ <div id="container">
+  <div id="menu">
+    <ul id="slide-out" class="side-nav fixed show-on-large-only">
+      <li><h6 id="usename">Hi,{{this.user.firstName}}</h6></li>
+       <li><a routerLink="/createTestComponent">Create New Booking</a></li>
+       <li><a [routerLink]="['/listAppoitment']"
+              [routerLinkActive]="['active']">All Booking</a></li>
+    </ul>
+  </div>
+  <div id="content">
+    <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only">
+      <i class="material-icons">menu</i>
+    </a>
+     <router-outlet></router-outlet>
+  </div>   
+</div>
+ <app-footer></app-footer>

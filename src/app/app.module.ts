@@ -55,6 +55,7 @@ import {
   MatPaginatorModule,
   MatFormFieldModule
 } from '@angular/material';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {
     DashboardComponent,
     CreateTestComponent,
     UpdateTestComponent,
-    ListTestComponent
+    ListTestComponent,
+    FooterComponent
     
   ],
   imports: [
